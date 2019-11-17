@@ -1,0 +1,217 @@
+{
+	"info": {
+		"_postman_id": "460ba307-751f-4791-ba3e-7ad038fb0218",
+		"name": "department_Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GETdepartment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "13c9a15c-bed4-4019-83f0-1f1fe254b54e",
+						"exec": [
+							"tests[\"body matches string 信息管理\"] = responseBody.has(\"信管\");",
+							"tests[\"body matches string 工程管理\"] = responseBody.has(\"工程造价\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/department.ctl",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"department.ctl"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETEdepartment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "465191cc-a35a-4344-892d-417a01af7c03",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"删除成功?\"] = jsonData.message === \"删除成功\";"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/department.ctl?id=3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"department.ctl"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POSTdepartment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ed3d82ca-096c-420e-a95e-30dc56516bbe",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"增加成功?\"] = jsonData.message === \"增加成功\""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"description\": \"园艺设计\",\r\n        \"no\": \"01\",\r\n        \"remarks\": \"\",\r\n        \"school\": {\r\n            \"description\": \"艺术\",\r\n            \"id\": 11,\r\n            \"no\": \"10\",\r\n            \"remarks\": \" best\"\r\n        }\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/department.ctl",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"department.ctl"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUTdepartment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dcd63ca4-8073-4eaa-9b65-188025fca512",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"更新成功?\"] = jsonData.message === \"更新成功\""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"description\": \"造价\",\r\n        \"id\": 1,\r\n        \"no\": \"02\",\r\n        \"remarks\": \"best\",\r\n        \"school\": {\r\n            \"description\": \"管理学院\",\r\n            \"id\": 2,\r\n            \"no\": \"02\"\r\n        }\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/department.ctl",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"department.ctl"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GETdepartment_id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7d440427-43a3-4f08-bfe6-f01b8d7e7571",
+						"exec": [
+							"tests[\"body matches string 信息管理\"] = responseBody.has(\"信管\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/department.ctl?paraType=school&id=11",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"department.ctl"
+					],
+					"query": [
+						{
+							"key": "paraType",
+							"value": "school"
+						},
+						{
+							"key": "id",
+							"value": "11"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
